@@ -1,0 +1,174 @@
+.wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+/* Intro */
+.intro {
+  margin-bottom: 16px;
+}
+
+.introTitle {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.narrative {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+.narrative strong {
+  color: var(--text);
+}
+
+.narrativeHighlight {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 8px 12px;
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+  border-left: 3px solid var(--success);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.narrativeAlert {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 8px 12px;
+  background: color-mix(in srgb, var(--danger) 8%, transparent);
+  border-left: 3px solid var(--danger);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Scenario grid */
+.scenarioGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.scenarioCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  background: var(--surface-2);
+}
+
+.cardViable {
+  border-left: 3px solid var(--success);
+}
+
+.cardNotViable {
+  border-left: 3px solid var(--danger);
+  opacity: 0.75;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.cardName {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.cardBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badgeOk {
+  background: color-mix(in srgb, var(--success) 15%, transparent);
+  color: var(--success);
+}
+
+.badgeNo {
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  color: var(--danger);
+}
+
+.cardDescription {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cardRows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.78rem;
+}
+
+.cardRowMargin {
+  border-top: 1px solid var(--border);
+  padding-top: 6px;
+  margin-top: 2px;
+}
+
+.cardLabel {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.cardValue {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
+}
+
+.cardMargin {
+  font-weight: 700;
+  text-align: right;
+}
+
+.marginOk {
+  color: var(--success);
+}
+
+.marginNo {
+  color: var(--danger);
+}
+
+/* Disclaimer */
+.disclaimer {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: center;
+}
