@@ -1,7 +1,59 @@
-import type { UserInputs } from "../engine/types";
+import { useEffect, useState } from "react";
 import { useFireStore } from "../store/useFireStore";
 import { ImpactIndicator } from "./ImpactIndicator";
 import styles from "./InputPanel.module.css";
+
+// ── NumberInput ───────────────────────────────────────────
+// Holds local string state so clearing the field doesn't force 0.
+// Only commits to the store when a valid non-empty number is typed.
+// Restores the last valid store value on blur if the field is empty.
+
+interface NumberInputProps {
+  id: string;
+  className?: string | undefined;
+  value: number;
+  min?: number | undefined;
+  max?: number | undefined;
+  step?: number | undefined;
+  onChange: (v: number) => void;
+}
+
+function NumberInput({ id, className, value, min, max, step, onChange }: NumberInputProps) {
+  const [local, setLocal] = useState(String(value));
+
+  // Sync from store (e.g. reset button)
+  useEffect(() => {
+    setLocal(String(value));
+  }, [value]);
+
+  return (
+    <input
+      id={id}
+      type="number"
+      className={className}
+      value={local}
+      min={min}
+      max={max}
+      step={step}
+      onChange={(e) => {
+        const raw = e.target.value;
+        setLocal(raw);
+        const num = Number(raw);
+        if (raw !== "" && !Number.isNaN(num) && num >= 0) {
+          onChange(num);
+        }
+      }}
+      onBlur={() => {
+        const num = Number(local);
+        if (local === "" || Number.isNaN(num)) {
+          setLocal(String(value)); // restore last valid value
+        }
+      }}
+    />
+  );
+}
+
+// ── Field ─────────────────────────────────────────────────
 
 interface FieldProps {
   id: string;
@@ -23,6 +75,8 @@ function Field({ id, label, hint, extra, children }: FieldProps) {
     </div>
   );
 }
+
+// ── SliderField ───────────────────────────────────────────
 
 interface SliderFieldProps {
   id: string;
@@ -66,15 +120,13 @@ function SliderField({
   );
 }
 
+// ── InputPanel ────────────────────────────────────────────
+
 export function InputPanel() {
   const { inputs, setInput, resetInputs } = useFireStore();
 
-  function handleInput(key: keyof UserInputs) {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = Number(e.target.value);
-      if (!Number.isNaN(val) && val >= 0) setInput(key, val);
-    };
-  }
+  const cotizadosYears = Math.floor(inputs.diasCotizados / 365.25);
+  const cotizadosMonths = Math.floor((inputs.diasCotizados % 365.25) / 30.44);
 
   return (
     <div className={styles.panel}>
@@ -83,47 +135,43 @@ export function InputPanel() {
         <h2 className={styles.sectionTitle}>Situación personal</h2>
 
         <Field id="currentAge" label="Edad actual">
-          <input
+          <NumberInput
             id="currentAge"
-            type="number"
             className={styles.input}
             value={inputs.currentAge}
             min={20}
             max={64}
-            onChange={handleInput("currentAge")}
+            onChange={(v) => setInput("currentAge", v)}
           />
         </Field>
 
         <Field id="cotizados-years" label="Vida laboral cotizada a la SS">
           <div className={styles.cotizadosRow}>
             <div className={styles.cotizadosUnit}>
-              <input
+              <NumberInput
                 id="cotizados-years"
-                type="number"
                 className={styles.input}
-                value={Math.floor(inputs.diasCotizados / 365.25)}
+                value={cotizadosYears}
                 min={0}
                 max={45}
-                onChange={(e) => {
-                  const years = Math.max(0, Number(e.target.value));
-                  const months = Math.floor((inputs.diasCotizados % 365.25) / 30.44);
-                  setInput("diasCotizados", Math.round(years * 365.25 + months * 30.44));
+                onChange={(years) => {
+                  setInput("diasCotizados", Math.round(years * 365.25 + cotizadosMonths * 30.44));
                 }}
               />
               <span className={styles.cotizadosLabel}>años</span>
             </div>
             <div className={styles.cotizadosUnit}>
-              <input
+              <NumberInput
                 id="cotizados-months"
-                type="number"
                 className={styles.input}
-                value={Math.floor((inputs.diasCotizados % 365.25) / 30.44)}
+                value={cotizadosMonths}
                 min={0}
                 max={11}
-                onChange={(e) => {
-                  const years = Math.floor(inputs.diasCotizados / 365.25);
-                  const months = Math.min(11, Math.max(0, Number(e.target.value)));
-                  setInput("diasCotizados", Math.round(years * 365.25 + months * 30.44));
+                onChange={(months) => {
+                  setInput(
+                    "diasCotizados",
+                    Math.round(cotizadosYears * 365.25 + Math.min(11, months) * 30.44)
+                  );
                 }}
               />
               <span className={styles.cotizadosLabel}>meses</span>
@@ -132,14 +180,13 @@ export function InputPanel() {
         </Field>
 
         <Field id="annualSalaryGross" label="Salario bruto anual (€)">
-          <input
+          <NumberInput
             id="annualSalaryGross"
-            type="number"
             className={styles.input}
             value={inputs.annualSalaryGross}
             min={0}
             step={1000}
-            onChange={handleInput("annualSalaryGross")}
+            onChange={(v) => setInput("annualSalaryGross", v)}
           />
         </Field>
       </section>
@@ -149,26 +196,24 @@ export function InputPanel() {
         <h2 className={styles.sectionTitle}>Ahorro e inversión</h2>
 
         <Field id="currentPortfolio" label="Portfolio actual en fondos (€)">
-          <input
+          <NumberInput
             id="currentPortfolio"
-            type="number"
             className={styles.input}
             value={inputs.currentPortfolio}
             min={0}
             step={1000}
-            onChange={handleInput("currentPortfolio")}
+            onChange={(v) => setInput("currentPortfolio", v)}
           />
         </Field>
 
         <Field id="monthlyContrib" label="Aportación mensual (€)" extra={<ImpactIndicator />}>
-          <input
+          <NumberInput
             id="monthlyContrib"
-            type="number"
             className={styles.input}
             value={inputs.monthlyContrib}
             min={0}
             step={100}
-            onChange={handleInput("monthlyContrib")}
+            onChange={(v) => setInput("monthlyContrib", v)}
           />
         </Field>
 
@@ -177,14 +222,13 @@ export function InputPanel() {
           label="Gastos mensuales en FIRE (€)"
           hint="¿Cuánto necesitas al mes cuando dejes de trabajar?"
         >
-          <input
+          <NumberInput
             id="monthlyExpenses"
-            type="number"
             className={styles.input}
             value={inputs.monthlyExpenses}
             min={0}
             step={100}
-            onChange={handleInput("monthlyExpenses")}
+            onChange={(v) => setInput("monthlyExpenses", v)}
           />
         </Field>
       </section>
