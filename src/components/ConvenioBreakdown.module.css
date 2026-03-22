@@ -142,3 +142,9 @@
   font-weight: 700;
   color: var(--success);
 }
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 12px;
+  }
+}

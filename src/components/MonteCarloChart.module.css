@@ -128,3 +128,9 @@
 .tooltipRow strong {
   color: var(--text);
 }
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 12px;
+  }
+}

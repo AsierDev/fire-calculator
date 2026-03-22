@@ -18,6 +18,12 @@
   gap: 12px;
 }
 
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .title {
   font-size: 1rem;
   font-weight: 700;
@@ -34,6 +40,27 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Mobile-only menu toggle — hidden on desktop */
+.menuBtn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 5px 10px;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.menuBtn:hover {
+  background: var(--border);
 }
 
 .themeBtn {
@@ -81,26 +108,53 @@
   gap: 20px;
 }
 
-/* ── Responsive ──────────────────────────────────────────── */
+/* ── Mobile ≤ 768px ──────────────────────────────────────── */
 @media (max-width: 768px) {
-  .body {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    max-height: 50vh;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-
   .root {
-    height: auto;
-    min-height: 100vh;
-    overflow: visible;
+    height: 100dvh;
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+
+  .body {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Sidebar slides in from the left, overlaid on top of content */
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: min(340px, 88vw);
+    height: 100%;
+    z-index: 10;
+    border-right: 1px solid var(--border);
+    transform: translateX(-110%);
+    transition: transform 0.25s ease;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
   }
 
   .main {
-    overflow: visible;
+    padding: 14px;
+    gap: 14px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 12px;
+  }
+
+  .main {
+    padding: 10px;
+    gap: 10px;
   }
 }

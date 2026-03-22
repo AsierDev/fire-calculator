@@ -56,3 +56,9 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 12px;
+  }
+}

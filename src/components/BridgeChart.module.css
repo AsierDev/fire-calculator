@@ -84,3 +84,9 @@
   font-weight: 600;
   margin-bottom: 2px;
 }
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 12px;
+  }
+}
