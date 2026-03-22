@@ -1,0 +1,130 @@
+.wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.runBtn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.runBtn:hover,
+.runBtnActive {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Explainer */
+.explainer {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.explainer p {
+  margin: 0 0 6px;
+}
+
+.explainer p:last-child {
+  margin-bottom: 0;
+}
+
+.explainer ul {
+  margin: 6px 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.explainer strong {
+  color: var(--text);
+}
+
+/* Placeholder */
+.placeholder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.placeholderIcon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Tooltip */
+.tooltip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  box-shadow: var(--shadow);
+  min-width: 140px;
+}
+
+.tooltipAge {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.tooltipRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-muted);
+}
+
+.tooltipRow strong {
+  color: var(--text);
+}

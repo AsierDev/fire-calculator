@@ -1,0 +1,132 @@
+.wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+
+.title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sliderGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sliderLabel {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider {
+  flex: 1;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.sliderValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Options row */
+.options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.optionLabel {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.toggleBtn {
+  padding: 3px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.toggleBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.toggleBtnActive {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* Metrics row */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metricLabel {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.metricValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.metricValueViable {
+  color: var(--success);
+}
+
+.metricValueNotViable {
+  color: var(--danger);
+}
+
+.metricSub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
