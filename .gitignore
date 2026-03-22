@@ -5,3 +5,10 @@ dist/
 .env
 .env.local
 tsconfig.tsbuildinfo
+.agents
+.claude
+skills-lock.json
+context.md
+CLAUDE.md
+teniendo*.md
+mis-datos.ts
