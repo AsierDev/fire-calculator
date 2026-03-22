@@ -1,0 +1,119 @@
+.panel {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Section ─────────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Field ───────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ── Input ───────────────────────────────────────────────── */
+.input {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.875rem;
+  font-family: var(--font);
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ── Slider ──────────────────────────────────────────────── */
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider {
+  flex: 1;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.sliderValue {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  min-width: 38px;
+  text-align: right;
+}
+
+/* ── Cotizados years+months row ──────────────────────────── */
+.cotizadosRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cotizadosUnit {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cotizadosLabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ── Reset button ────────────────────────────────────────── */
+.resetBtn {
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+  width: 100%;
+}
+
+.resetBtn:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}

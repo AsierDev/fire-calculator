@@ -1,20 +1,24 @@
-import { useState } from "react";
-import "./App.css";
+import { BridgeChart } from "./components/BridgeChart";
+import { ConvenioBreakdown } from "./components/ConvenioBreakdown";
+import { CustomAgeSlider } from "./components/CustomAgeSlider";
+import { FireSummaryCard } from "./components/FireSummaryCard";
+import { InputPanel } from "./components/InputPanel";
+import { Layout } from "./components/Layout";
+import { MonteCarloChart } from "./components/MonteCarloChart";
+import { PortfolioChart } from "./components/PortfolioChart";
+import { ResultsTable } from "./components/ResultsTable";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="app">
-      <h1>zero-setup-biome</h1>
-      <p>React + TypeScript + Vite + Biome</p>
-      <button type="button" onClick={() => setCount((c) => c + 1)}>
-        Count: {count}
-      </button>
-      <p className="hint">
-        Run <code>npm run lint</code> to check your code with Biome
-      </p>
-    </div>
+    <Layout sidebar={<InputPanel />}>
+      <FireSummaryCard />
+      <ResultsTable />
+      <CustomAgeSlider />
+      <PortfolioChart />
+      <BridgeChart />
+      <MonteCarloChart />
+      <ConvenioBreakdown />
+    </Layout>
   );
 }
 
